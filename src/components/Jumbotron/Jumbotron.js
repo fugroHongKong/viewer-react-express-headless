@@ -114,18 +114,6 @@ class Jumbotron extends Component {
         });
     }
 
-    // onFullscreen() {
-    //     this.setState({fullscreen: true}, () => {
-    //         scrollTo(0, 0, {
-    //             ease: 'inQuad',
-    //             duration: 300
-    //         });
-    //         document.body.classList.add('fullscreen');
-    //
-    //         setTimeout(() => viewerResize(), 3000);
-    //     });
-    // }
-
     onPropertiesDisplay() {
         this.setState({properties: !this.state.properties}, () => {
             if (this.state.properties) {
@@ -135,12 +123,6 @@ class Jumbotron extends Component {
             }
         });
     }
-
-    // onPropertiesDisplay() {
-    //     this.setState({properties: true}, () => {
-    //         document.body.classList.add('properties-show');
-    //     });
-    // }
 
     onExplode() {
         this.setState({explode: !this.state.explode}, () => {
