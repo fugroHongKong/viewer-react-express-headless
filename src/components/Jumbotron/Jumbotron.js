@@ -59,12 +59,11 @@ class Jumbotron extends Component {
 
     componentDidMount() {
         this.onFullscreen();
-        this.onPropertiesDisplay();
-        // window.addEventListener('orientationchange', this.onOrientationChange);
+        window.addEventListener('orientationchange', this.onOrientationChange);
     }
 
     componentWillUnmount() {
-        // window.removeEventListener('orientationchange', this.onOrientationChange);
+        window.removeEventListener('orientationchange', this.onOrientationChange);
     }
 
     // handleValueChange(event) {
@@ -145,9 +144,10 @@ class Jumbotron extends Component {
     //     });
     // }
     //
-    // onOrientationChange() {
-    //     setTimeout(() => viewerResize(), 300);
-    // }
+    onOrientationChange() {
+        setTimeout(() => viewerResize(), 300);
+    }
+
     //
     // onExplodeAnimation() {
     //     this.setState({expMotion: !this.state.expMotion}, () => {
@@ -190,9 +190,9 @@ class Jumbotron extends Component {
     //     // })
     // }
     //
-    // handlePropertiesClose = () => {
-    //     this.setState({properties: false})
-    // }
+    handlePropertiesClose = () => {
+        this.setState({properties: false})
+    }
 
     render() {
 
@@ -202,10 +202,10 @@ class Jumbotron extends Component {
         //     'fa-compress': this.state.fullscreen,
         // });
 
-        // const propertiesClass = classnames({
-        //     'fa': true,
-        //     'fa-list': this.state.fullscreen,
-        // });
+        const propertiesClass = classnames({
+            'fa': true,
+            'fa-list': this.state.fullscreen,
+        });
 
         // const explodeClass = classnames({
         //     'fa': true,
@@ -227,11 +227,11 @@ class Jumbotron extends Component {
         //     'fa-refresh': this.state.fullscreen,
         // });
 
-        // const propertiesBtnClass = classnames({
-        //     'properties-btn': true,
-        //     'btn--active': this.state.properties,
-        //     'btn--deactive': !this.state.properties
-        // })
+        const propertiesBtnClass = classnames({
+            'properties-btn': true,
+            'btn--active': this.state.properties,
+            'btn--deactive': !this.state.properties
+        })
 
         // const explodeBtnClass = classnames({
         //     'explode-btn': true,
@@ -267,9 +267,9 @@ class Jumbotron extends Component {
                     {/*<button className="forge-btn" onClick={this.onFullscreen}>*/}
                     {/*<i className={buttonClass}></i>*/}
                     {/*</button>*/}
-                    {/*<button className={propertiesBtnClass} onClick={this.onPropertiesDisplay}>*/}
-                    {/*<i className={propertiesClass}></i>*/}
-                    {/*</button>*/}
+                    <button className={propertiesBtnClass} onClick={this.onPropertiesDisplay}>
+                        <i className={propertiesClass}></i>
+                    </button>
                     {/*<button className={explodeBtnClass} onClick={this.onExplode}>*/}
                     {/*<i className={explodeClass}></i>*/}
                     {/*</button>*/}
