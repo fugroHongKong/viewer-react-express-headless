@@ -60,8 +60,13 @@ class Jumbotron extends Component {
     componentDidMount() {
         window.addEventListener('orientationchange', this.onOrientationChange);
 
-        this.onFullscreen();
-        this.onPropertiesDisplay();
+        this.setState({
+            fullScreen: false,
+            properties: false,
+        }, () => {
+            this.onFullscreen();
+            this.onPropertiesDisplay();
+        });
     }
 
     componentWillUnmount() {
@@ -76,65 +81,66 @@ class Jumbotron extends Component {
 
     }
 
-    // onFullscreen() {
-    //     this.setState({fullscreen: !this.state.fullscreen}, () => {
-    //
-    //         if (this.state.fullscreen) {
-    //             scrollTo(0, 0, {
-    //                 ease: 'inQuad',
-    //                 duration: 300
-    //             });
-    //             document.body.classList.add('fullscreen')
-    //         } else {
-    //             document.body.classList.remove('fullscreen');
-    //             this.onResetState();
-    //             if (this.state.explode) {
-    //                 document.body.classList.remove('explode');
-    //             }
-    //
-    //             this.setState({
-    //                 fullscreen: false,
-    //                 explode: false,
-    //                 expMotion: false,
-    //                 rotMotion: false,
-    //                 resetState: false,
-    //                 properties: false,
-    //                 value: 0
-    //             })
-    //         }
-    //
-    //         // resize viewer after css animation
-    //         setTimeout(() => viewerResize(), 300);
-    //     });
-    // }
-
     onFullscreen() {
-        this.setState({fullscreen: true}, () => {
-            scrollTo(0, 0, {
-                ease: 'inQuad',
-                duration: 300
-            });
-            document.body.classList.add('fullscreen');
+        this.setState({fullscreen: !this.state.fullscreen}, () => {
 
+            if (this.state.fullscreen) {
+                scrollTo(0, 0, {
+                    ease: 'inQuad',
+                    duration: 300
+                });
+                document.body.classList.add('fullscreen')
+            } else {
+                document.body.classList.remove('fullscreen');
+                this.onResetState();
+                if (this.state.explode) {
+                    document.body.classList.remove('explode');
+                }
+
+                this.setState({
+                    fullscreen: false,
+                    explode: false,
+                    expMotion: false,
+                    rotMotion: false,
+                    resetState: false,
+                    properties: false,
+                    value: 0
+                })
+            }
+
+            // resize viewer after css animation
+            // setTimeout(() => viewerResize(), 300);
             setTimeout(() => viewerResize(), 3000);
         });
     }
 
-    // onPropertiesDisplay() {
-    //     this.setState({properties: !this.state.properties}, () => {
-    //         if (this.state.properties) {
-    //             document.body.classList.add('properties-show');
-    //         } else {
-    //             document.body.classList.remove('properties-show');
-    //         }
+    // onFullscreen() {
+    //     this.setState({fullscreen: true}, () => {
+    //         scrollTo(0, 0, {
+    //             ease: 'inQuad',
+    //             duration: 300
+    //         });
+    //         document.body.classList.add('fullscreen');
+    //
+    //         setTimeout(() => viewerResize(), 3000);
     //     });
     // }
 
     onPropertiesDisplay() {
-        this.setState({properties: true}, () => {
-            document.body.classList.add('properties-show');
+        this.setState({properties: !this.state.properties}, () => {
+            if (this.state.properties) {
+                document.body.classList.add('properties-show');
+            } else {
+                document.body.classList.remove('properties-show');
+            }
         });
     }
+
+    // onPropertiesDisplay() {
+    //     this.setState({properties: true}, () => {
+    //         document.body.classList.add('properties-show');
+    //     });
+    // }
 
     onExplode() {
         this.setState({explode: !this.state.explode}, () => {
@@ -269,9 +275,9 @@ class Jumbotron extends Component {
                     {/*<button className="forge-btn" onClick={this.onFullscreen}>*/}
                     {/*<i className={buttonClass}></i>*/}
                     {/*</button>*/}
-                    {/*<button className={propertiesBtnClass} onClick={this.onPropertiesDisplay}>*/}
-                    {/*<i className={propertiesClass}></i>*/}
-                    {/*</button>*/}
+                    <button className={propertiesBtnClass} onClick={this.onPropertiesDisplay}>
+                        <i className={propertiesClass}></i>
+                    </button>
                     <button className={explodeBtnClass} onClick={this.onExplode}>
                         <i className={explodeClass}></i>
                     </button>

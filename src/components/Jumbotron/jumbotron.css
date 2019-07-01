@@ -31,7 +31,7 @@ and (max-device-width: 1024px) {
 @media (max-width: 768px) {
     .forge-jumbotron .forge-logo img {
         /*width: 200px !important;*/
-        width: 100px !important;
+        width: 80px !important;
     }
 }
 
@@ -41,7 +41,7 @@ and (max-device-width: 568px) {
     /* STYLES GO HERE */
     .forge-jumbotron .forge-logo img {
         /*width: 200px !important;*/
-        width: 100px !important;
+        width: 80px !important;
     }
 
     /*
@@ -80,7 +80,8 @@ and (max-width : 736px)*/
 @media screen and (max-width: 736px) {
     /* STYLES GO HERE */
     .forge-jumbotron .forge-logo img {
-        width: 200px !important;
+        /*width: 200px !important;*/
+        width: 80px !important;
     }
 
     .fullscreen .forge-jumbotron {
@@ -130,7 +131,7 @@ and (max-width : 736px)*/
 
 .forge-jumbotron .forge-logo img {
     /*width: 300px;*/
-    width: 150px;
+    width: 120px;
 }
 
 .forge-jumbotron .forge-viewer {
