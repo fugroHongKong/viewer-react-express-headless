@@ -38,41 +38,43 @@ class Jumbotron extends Component {
 
         this.state = {
             fullscreen: false,
-            // explode: false,
-            // expMotion: false,
-            // rotMotion: false,
-            // resetState: false,
+            explode: false,
+            expMotion: false,
+            rotMotion: false,
+            resetState: false,
             properties: false,
-            // value: 0
+            value: 0
         }
 
         this.onFullscreen = this.onFullscreen.bind(this);
-        // this.onExplode = this.onExplode.bind(this);
-        // this.onExplodeAnimation = this.onExplodeAnimation.bind(this);
-        // this.onRotateAnimation = this.onRotateAnimation.bind(this);
-        // this.onResetState = this.onResetState.bind(this);
-        // this.onOrientationChange = this.onOrientationChange.bind(this);
+        this.onExplode = this.onExplode.bind(this);
+        this.onExplodeAnimation = this.onExplodeAnimation.bind(this);
+        this.onRotateAnimation = this.onRotateAnimation.bind(this);
+        this.onResetState = this.onResetState.bind(this);
+        this.onOrientationChange = this.onOrientationChange.bind(this);
         this.onPropertiesDisplay = this.onPropertiesDisplay.bind(this);
-        // this.handleValueChange = this.handleValueChange.bind(this);
-        // this.onSelectionChange = this.onSelectionChange.bind(this);
+        this.handleValueChange = this.handleValueChange.bind(this);
+        this.onSelectionChange = this.onSelectionChange.bind(this);
     }
 
     componentDidMount() {
-        this.onFullscreen();
         window.addEventListener('orientationchange', this.onOrientationChange);
+
+        this.onFullscreen();
+        this.onPropertiesDisplay();
     }
 
     componentWillUnmount() {
         window.removeEventListener('orientationchange', this.onOrientationChange);
     }
 
-    // handleValueChange(event) {
-    //     this.setState({
-    //         value: event.target.value
-    //     });
-    //     viewerExplode(this.state.value / 100);
-    //
-    // }
+    handleValueChange(event) {
+        this.setState({
+            value: event.target.value
+        });
+        viewerExplode(this.state.value / 100);
+
+    }
 
     // onFullscreen() {
     //     this.setState({fullscreen: !this.state.fullscreen}, () => {
@@ -114,7 +116,7 @@ class Jumbotron extends Component {
             });
             document.body.classList.add('fullscreen');
 
-            setTimeout(() => viewerResize(), 2000);
+            setTimeout(() => viewerResize(), 3000);
         });
     }
 
@@ -134,98 +136,98 @@ class Jumbotron extends Component {
         });
     }
 
-    // onExplode() {
-    //     this.setState({explode: !this.state.explode}, () => {
-    //         if (this.state.explode) {
-    //             document.body.classList.add('explode')
-    //         } else {
-    //             document.body.classList.remove('explode');
-    //         }
-    //     });
-    // }
-    //
+    onExplode() {
+        this.setState({explode: !this.state.explode}, () => {
+            if (this.state.explode) {
+                document.body.classList.add('explode')
+            } else {
+                document.body.classList.remove('explode');
+            }
+        });
+    }
+
     onOrientationChange() {
         setTimeout(() => viewerResize(), 300);
     }
 
-    //
-    // onExplodeAnimation() {
-    //     this.setState({expMotion: !this.state.expMotion}, () => {
-    //         if (this.state.expMotion) {
-    //             document.body.classList.add('explode-motion')
-    //             toggleExplosion();
-    //         } else {
-    //             document.body.classList.remove('explode-motion');
-    //             toggleExplosion();
-    //         }
-    //     });
-    // }
-    //
-    // onRotateAnimation() {
-    //     this.setState({rotMotion: !this.state.rotMotion}, () => {
-    //         if (this.state.rotMotion) {
-    //             document.body.classList.add('rotate-motion')
-    //             toggleRotation();
-    //         } else {
-    //             document.body.classList.remove('rotate-motion');
-    //             toggleRotation();
-    //         }
-    //     });
-    // }
-    //
-    // onResetState() {
-    //     document.body.classList.remove('explode', 'explode-motion', 'rotate-motion');
-    //     this.setState({explode: false, expMotion: false, rotMotion: false});
-    //     stopMotion();
-    //     modelRestoreState();
-    // }
-    //
-    // onSelectionChange() {
-    //     if (!this.state.properties) {
-    //         return;
-    //     }
-    //
-    //     // this.setState({
-    //     //
-    //     // })
-    // }
-    //
+
+    onExplodeAnimation() {
+        this.setState({expMotion: !this.state.expMotion}, () => {
+            if (this.state.expMotion) {
+                document.body.classList.add('explode-motion')
+                toggleExplosion();
+            } else {
+                document.body.classList.remove('explode-motion');
+                toggleExplosion();
+            }
+        });
+    }
+
+    onRotateAnimation() {
+        this.setState({rotMotion: !this.state.rotMotion}, () => {
+            if (this.state.rotMotion) {
+                document.body.classList.add('rotate-motion')
+                toggleRotation();
+            } else {
+                document.body.classList.remove('rotate-motion');
+                toggleRotation();
+            }
+        });
+    }
+
+    onResetState() {
+        document.body.classList.remove('explode', 'explode-motion', 'rotate-motion');
+        this.setState({explode: false, expMotion: false, rotMotion: false});
+        stopMotion();
+        modelRestoreState();
+    }
+
+    onSelectionChange() {
+        if (!this.state.properties) {
+            return;
+        }
+
+        // this.setState({
+        //
+        // })
+    }
+
     handlePropertiesClose = () => {
         this.setState({properties: false})
     }
 
     render() {
 
-        // const buttonClass = classnames({
-        //     'fa': true,
-        //     'fa-expand': !this.state.fullscreen,
-        //     'fa-compress': this.state.fullscreen,
-        // });
+        const buttonClass = classnames({
+            'fa': true,
+            'fa-expand': !this.state.fullscreen,
+            'fa-compress': this.state.fullscreen,
+        });
 
         const propertiesClass = classnames({
             'fa': true,
             'fa-list': this.state.fullscreen,
         });
 
-        // const explodeClass = classnames({
-        //     'fa': true,
-        //     'fa-cubes': this.state.fullscreen,
-        // });
-        //
-        // const explodeMotionClass = classnames({
-        //     'fa': true,
-        //     'fa-bomb': this.state.fullscreen,
-        // });
-        //
-        // const rotateMotionClass = classnames({
-        //     'fa': true,
-        //     'fa-repeat': this.state.fullscreen,
-        // });
-        //
-        // const resetClass = classnames({
-        //     'fa': true,
-        //     'fa-refresh': this.state.fullscreen,
-        // });
+        const explodeClass = classnames({
+            'fa': true,
+            'fa-cubes': this.state.fullscreen,
+        });
+
+        const explodeMotionClass = classnames({
+            'fa': true,
+            'fa-bomb': this.state.fullscreen,
+        });
+
+        const rotateMotionClass = classnames({
+            'fa': true,
+            'fa-repeat': this.state.fullscreen,
+        });
+
+        const resetClass = classnames({
+            'fa': true,
+            'fa-refresh': this.state.fullscreen,
+        });
 
         const propertiesBtnClass = classnames({
             'properties-btn': true,
@@ -233,28 +235,28 @@ class Jumbotron extends Component {
             'btn--deactive': !this.state.properties
         })
 
-        // const explodeBtnClass = classnames({
-        //     'explode-btn': true,
-        //     'btn--active': this.state.explode,
-        //     'btn--deactive': !this.state.explode
-        // })
-        //
-        // const explodeMotionBtnClass = classnames({
-        //     'explode-motion-btn': true,
-        //     'expbtn--active': this.state.expMotion,
-        //     'expbtn--deactive': !this.state.expMotion
-        // })
-        //
-        // const rotateMotionBtnClass = classnames({
-        //     'rotate-motion-btn': true,
-        //     'rotbtn--active': this.state.rotMotion,
-        //     'rotbtn--deactive': !this.state.rotMotion
-        // })
-        //
-        // const resetBtnClass = classnames({
-        //     'reset-btn': true,
-        //     'resetbtn--deactive': !this.state.rotMotion
-        // })
+        const explodeBtnClass = classnames({
+            'explode-btn': true,
+            'btn--active': this.state.explode,
+            'btn--deactive': !this.state.explode
+        })
+
+        const explodeMotionBtnClass = classnames({
+            'explode-motion-btn': true,
+            'expbtn--active': this.state.expMotion,
+            'expbtn--deactive': !this.state.expMotion
+        })
+
+        const rotateMotionBtnClass = classnames({
+            'rotate-motion-btn': true,
+            'rotbtn--active': this.state.rotMotion,
+            'rotbtn--deactive': !this.state.rotMotion
+        })
+
+        const resetBtnClass = classnames({
+            'reset-btn': true,
+            'resetbtn--deactive': !this.state.rotMotion
+        })
 
         return (
             <div className="forge-jumbotron">
@@ -267,21 +269,21 @@ class Jumbotron extends Component {
                     {/*<button className="forge-btn" onClick={this.onFullscreen}>*/}
                     {/*<i className={buttonClass}></i>*/}
                     {/*</button>*/}
-                    <button className={propertiesBtnClass} onClick={this.onPropertiesDisplay}>
-                        <i className={propertiesClass}></i>
+                    {/*<button className={propertiesBtnClass} onClick={this.onPropertiesDisplay}>*/}
+                    {/*<i className={propertiesClass}></i>*/}
+                    {/*</button>*/}
+                    <button className={explodeBtnClass} onClick={this.onExplode}>
+                        <i className={explodeClass}></i>
                     </button>
-                    {/*<button className={explodeBtnClass} onClick={this.onExplode}>*/}
-                    {/*<i className={explodeClass}></i>*/}
-                    {/*</button>*/}
-                    {/*<button className={explodeMotionBtnClass} onClick={this.onExplodeAnimation}>*/}
-                    {/*<i className={explodeMotionClass}></i>*/}
-                    {/*</button>*/}
-                    {/*<button className={rotateMotionBtnClass} onClick={this.onRotateAnimation}>*/}
-                    {/*<i className={rotateMotionClass}></i>*/}
-                    {/*</button>*/}
-                    {/*<button className={resetBtnClass} onClick={this.onResetState}>*/}
-                    {/*<i className={resetClass}></i>*/}
-                    {/*</button>*/}
+                    <button className={explodeMotionBtnClass} onClick={this.onExplodeAnimation}>
+                        <i className={explodeMotionClass}></i>
+                    </button>
+                    <button className={rotateMotionBtnClass} onClick={this.onRotateAnimation}>
+                        <i className={rotateMotionClass}></i>
+                    </button>
+                    <button className={resetBtnClass} onClick={this.onResetState}>
+                        <i className={resetClass}></i>
+                    </button>
 
                     {
                         this.state.properties
@@ -289,13 +291,13 @@ class Jumbotron extends Component {
                             : null
                     }
 
-                    {/*<input type="range"*/}
-                    {/*className="range-style"*/}
-                    {/*min="0"*/}
-                    {/*max="100"*/}
-                    {/*value={this.state.value}*/}
-                    {/*onChange={this.handleValueChange}*/}
-                    {/*/>*/}
+                    <input type="range"
+                           className="range-style"
+                           min="0"
+                           max="100"
+                           value={this.state.value}
+                           onChange={this.handleValueChange}
+                    />
                 </div>
             </div>
         );
