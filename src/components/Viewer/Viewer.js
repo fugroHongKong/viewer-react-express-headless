@@ -23,8 +23,9 @@ class Viewer extends Component {
 
     componentDidMount() {
         // RC Car Model
-        var documentId = 'urn:dXJuOmFkc2sub2JqZWN0czpvcy5vYmplY3Q6dmlld2VyLXJvY2tzLXJlYWN0L1JDJTIwQ2FyLmYzZA';
-        Helpers.launchViewer('viewerDiv', documentId , '0002');        
+        // var documentId = 'urn:dXJuOmFkc2sub2JqZWN0czpvcy5vYmplY3Q6dmlld2VyLXJvY2tzLXJlYWN0L1JDJTIwQ2FyLmYzZA';
+        var documentId = 'urn:dXJuOmFkc2sub2JqZWN0czpvcy5vYmplY3Q6YXNpYXdvcmxkZXhwb18wMS9Bc2lhV29ybGQtRXhwb19QMDMubndk';
+        Helpers.launchViewer('viewerDiv', documentId , '0002');
     }
 
 	render() {

@@ -13,6 +13,9 @@ coverage
 .DS_Store
 .env
 npm-debug.log
+yarn-error.log
+yarn.lock
+.idea
 
 
 cra-server-ex.graffle
