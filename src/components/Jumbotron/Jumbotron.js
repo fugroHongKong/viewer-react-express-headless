@@ -114,7 +114,7 @@ class Jumbotron extends Component {
             });
             document.body.classList.add('fullscreen');
 
-            setTimeout(() => viewerResize(), 1000);
+            setTimeout(() => viewerResize(), 2000);
         });
     }
 
