@@ -1,5 +1,6 @@
 .model-properties {
-    background-color: transparent;
+    /*background-color: transparent;*/
+    background-color: #fff;
     padding: .5em 1em;
     position: absolute;
     /*right: 20px;*/
