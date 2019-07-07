@@ -61,8 +61,6 @@ class Properties extends Component {
         if (properties.length === 1) {
             this.setPropertyByIndex(0, true);
         }
-
-        console.log(properties);
     }
 
 

@@ -139,7 +139,7 @@ function getModelProperties() {
           data: list.filter(item => item.displayCategory === category)
         }
       ));
-    console.log(properties);
+    // console.log(JSON.parse(properties));
       resolve(properties);
     });
   });
